@@ -1,28 +1,51 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 //form-hook
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../context/AuthProvider';
 
+import { GoogleAuthProvider } from "firebase/auth";
+
 const Login = () => {
-	const {logIn} = useContext(AuthContext)
+	const {logIn,googleSignIn} = useContext(AuthContext)
+	const provider = new GoogleAuthProvider();
+
 	const [signError,setSignerror] = useState('')
 	// console.log(logIn)
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [data,setData] = useState('')
     // console.log(data);
+
+	let navigate = useNavigate();
+	let location = useLocation();
+	
+	let from = location.state?.from?.pathname || "/";
+
+
     const onSubmit = data => {
 		setSignerror('');
 		setData(data)
 		logIn(data.email, data.password)
 		.then(res => {
 			const user = res.user;
-			console.log(user);
+			// console.log(user);
+			navigate(from, {replace: true});
 		}).catch(error => {
-			console.log(error)
+			// console.log(error)
 			setSignerror(error.message)
 	})
 	};
+
+	//Google-sign-in
+	const googleSign = () =>{
+		// console.log('click')
+		googleSignIn(provider)
+		.then(res => {
+			const user = res.user;
+			// console.log(user);
+		}).catch(error => console.log(error));
+	}
+
     
     return (
         <div className='py-10'>
@@ -63,6 +86,7 @@ const Login = () => {
 	</div>
 	<div className="flex justify-center space-x-4">
 		<button
+		onClick={googleSign}
          aria-label="Log in with Google"
           className="p-3 rounded-sm">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-5 h-5 fill-current">
