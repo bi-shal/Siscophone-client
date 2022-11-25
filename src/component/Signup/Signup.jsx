@@ -3,20 +3,25 @@ import { Link } from 'react-router-dom';
 
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../context/AuthProvider';
+import useToken from '../../Share/Token/token';
 
 const Signup = () => {
 const {createUser,user} = useContext(AuthContext)
+const [token] = useToken(user)
 // console.log(user)
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const [data,setData] = useState('')
-    const [createdUserEmail, setCreatedUserEmail] = useState('')
-    console.log(createdUserEmail);
+    const [dataa,setData] = useState('')
+    console.log(dataa)
+    // const [createdUserEmail, setCreatedUserEmail] = useState('')
+    // console.log(createdUserEmail);
 
 
     const onSubmit = data => {
-        setData(data)
-        saveUser(data.name,data.password,data.role)
+        console.log(data,'click');
+        setData(dataa)
+        console.log(data);
+        // saveUser(data.name,data.password,data.role)
         createUser(data.email, data.password)
         .then(result => {
             const user = result.user;
@@ -28,30 +33,19 @@ const {createUser,user} = useContext(AuthContext)
 
 
 
-    const saveUser = (name,email,password,role) => {
-    const user = {name,email,password,role}
-
-    console.log(user);
- fetch(`http://localhost:5000/users`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
-        .then(res => res.json())
-        .then(data =>{
-            setCreatedUserEmail(email);
-        })
+    // const saveUser = (name,email,password,role) => {
+    // const user = {name,email,password,role}
+    // console.log(user)
 
 
-    }
+
+    // }
 
 
     return (
         <div className='py-10'>
             <div className="w-full mx-auto max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100">
-	<h1 className="text-2xl font-bold text-center">Login</h1>
+	<h1 className="text-2xl font-bold text-center">SignUp</h1>
 	<form
     onSubmit={handleSubmit(onSubmit)}
      className="space-y-6 ng-untouched ng-pristine ng-valid">
@@ -90,9 +84,9 @@ const {createUser,user} = useContext(AuthContext)
         <select
         {...register("role", { required: 'true' })}
         className="select select-accent w-full max-w-xs text-black">
-  <option disabled selected>Select?</option>
-  <option value='seller'>Seller</option>
-  <option value='buyer'>Buyer</option>
+  <option  disabled >Select?</option>
+  <option name='seller' value='seller'>Seller</option>
+  <option name='buyer' value='buyer'>Buyer</option>
   
 </select>
 

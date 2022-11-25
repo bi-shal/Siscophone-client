@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import Navber from '../../Share/Navber/Navber';
@@ -9,7 +10,34 @@ import Navber from '../../Share/Navber/Navber';
 
 const DashBoardLayout = () => {
     const { user } = useContext(AuthContext);
+    
+    const [users,setUsers] = useState(null)
+    // console.log(users);
+
     // const [isAdmin] = useAdmin(user?.email)
+
+
+
+    useEffect(()=>{
+
+        axios.get(`http://localhost:5000/user/${user?.email}`,{
+            headers:{
+                "authorizaion": `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => {
+            console.log(res?.data);
+            setUsers(res.data)
+            // const accessToken = res?.data?.data;
+            // setToken(accessToken)
+            // localStorage.setItem('accessToken', accessToken)
+        })
+
+    },[user?.email])
+
+
+
+
     return (
         <div>
             <Navber></Navber>

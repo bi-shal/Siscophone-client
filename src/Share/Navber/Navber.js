@@ -9,8 +9,12 @@ const Navber = () => {
 //log- out
   const out = () =>{
     logOut()
-    .then(() => {})
-    .catch(error => console.log(error));
+    .then(result => {
+      const user = result?.user;
+      console.log(user);
+      document.title = 'Logout'
+    })
+    .catch(error => console.error(error));
   }
 
   const menuItems = <React.Fragment>
