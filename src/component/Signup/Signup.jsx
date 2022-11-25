@@ -1,45 +1,56 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../context/AuthProvider';
 import useToken from '../../Share/Token/token';
+// import axios from 'axios';
 
 const Signup = () => {
 const {createUser,user} = useContext(AuthContext)
+const [useOne,setUseOne] = useState([])
+console.log(useOne);
 const [token] = useToken(user)
 // console.log(user)
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const [dataa,setData] = useState('')
+    const [dataa,setData] = useState({})
     console.log(dataa)
-    // const [createdUserEmail, setCreatedUserEmail] = useState('')
-    // console.log(createdUserEmail);
-
-
+   
     const onSubmit = data => {
-        console.log(data,'click');
-        setData(dataa)
-        console.log(data);
-        // saveUser(data.name,data.password,data.role)
+        // console.log(data,'click');
+
+        const createUserr = {
+            email:data.email,
+            role:data.role,
+        }
+        console.log(createUserr)
+        setData(createUserr)
         createUser(data.email, data.password)
+       
         .then(result => {
             const user = result.user;
-            // console.log(user);
            
         }).catch(error => console.log(error));
+
+
+        
+    fetch(`http://localhost:5000/usersCreate`, {
+        method:'POST',
+        headers:{
+            'content-type' : 'application/json',
+        },
+        body:JSON.stringify(dataa)
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        // setUseOne(data)
+    })
+.catch(err => console.error(err));
     };
 
 
-
-
-    // const saveUser = (name,email,password,role) => {
-    // const user = {name,email,password,role}
-    // console.log(user)
-
-
-
-    // }
 
 
     return (

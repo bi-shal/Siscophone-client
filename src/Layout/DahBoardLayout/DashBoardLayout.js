@@ -11,7 +11,7 @@ import Navber from '../../Share/Navber/Navber';
 const DashBoardLayout = () => {
     const { user } = useContext(AuthContext);
     
-    const [users,setUsers] = useState(null)
+    const [users,setUsers] = useState([])
     // console.log(users);
 
     // const [isAdmin] = useAdmin(user?.email)
@@ -26,8 +26,8 @@ const DashBoardLayout = () => {
             }
         })
         .then(res => {
-            console.log(res?.data);
-            setUsers(res.data)
+            // console.log(res?.data);
+            setUsers(res?.data?.data)
             // const accessToken = res?.data?.data;
             // setToken(accessToken)
             // localStorage.setItem('accessToken', accessToken)
