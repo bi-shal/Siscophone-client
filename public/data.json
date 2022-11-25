@@ -1,0 +1,27 @@
+[
+    {   
+        "service_id": "01",
+        "title": "Wildlife PhotoShoot",
+        "img": "https://i.ibb.co/Kyk6cK6/animals-africa-zebras-sunset-wallpaper-preview.jpg",
+        "price": "200.00",
+        "quantity": "6",
+        "description": "A wildlife photographer is a photographer who takes ."
+    },
+
+    {   
+        "service_id": "05",
+        "title": "News PhotoShot",
+        "img": "https://i.ibb.co/hHqKN9n/depositphotos-51280701-stock-photo-journalism.webp",
+        "price": "110.00",
+        "quantity": "12",
+        "description": "A news photographer takes ."
+    },
+    {   
+        "service_id": "06",
+        "title": "Travel PhotoShot",
+        "img": "https://i.ibb.co/sPQssgx/photographer-3804979-340.jpg",
+        "price": "140.00",
+        "quantity": "12",
+        "description": "A travel writer and photographer who often."
+    }
+]

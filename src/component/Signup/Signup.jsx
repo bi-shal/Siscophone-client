@@ -6,21 +6,46 @@ import { AuthContext } from '../../context/AuthProvider';
 
 const Signup = () => {
 const {createUser,user} = useContext(AuthContext)
-console.log(user)
+// console.log(user)
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [data,setData] = useState('')
-    // console.log(data);
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+    console.log(createdUserEmail);
 
 
     const onSubmit = data => {
         setData(data)
+        saveUser(data.name,data.password,data.role)
         createUser(data.email, data.password)
         .then(result => {
             const user = result.user;
-            console.log(user);
+            // console.log(user);
+           
         }).catch(error => console.log(error));
     };
+
+
+
+
+    const saveUser = (name,email,password,role) => {
+    const user = {name,email,password,role}
+
+    console.log(user);
+ fetch(`http://localhost:5000/users`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            setCreatedUserEmail(email);
+        })
+
+
+    }
 
 
     return (
@@ -60,6 +85,18 @@ console.log(user)
 			<div data-lastpass-icon-root="true" ></div>
             
 		</div>
+
+
+        <select
+        {...register("role", { required: 'true' })}
+        className="select select-accent w-full max-w-xs text-black">
+  <option disabled selected>Select?</option>
+  <option value='seller'>Seller</option>
+  <option value='buyer'>Buyer</option>
+  
+</select>
+
+
         
 		<button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">Sign up</button>
 	</form>
