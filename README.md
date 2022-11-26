@@ -1,14 +1,9 @@
--
-
--
-
--
-
--
-
--
-
-
+- This WebSite is fully Responsive
+- There used MongoDb DataBase
+- Used Dynamic Route
+- Using DasyUi Component Library
+- This site is PhotoGrapy related
+- Using React for better user exprience
 
 
 
