@@ -1,4 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
+import AllCategory from "../../Category/AllCategoryy/AllCategory";
+import Samsung from "../../Category/Samsung/Samsung";
+import Symphony from "../../Category/Symphony/Symphony";
+import Xaiomi from "../../Category/Xaiomi/Xaiomi";
 import Blog from "../../component/Blog/Blog";
 import AddProduct from "../../component/DashBoard/AddProduct/AddProduct";
 import Dashboard from "../../component/DashBoard/Dashboard/Dashboard";
@@ -30,6 +34,11 @@ export const router = createBrowserRouter([
             {
                 path:'/signup',
                 element:<Signup></Signup>
+            },
+            {
+                path:'/check/:id',
+              element:<AllCategory></AllCategory>,
+              loader: ({params}) => fetch(`categoryData.json/check/${params.id}`)
             }
         ]
 

@@ -6,37 +6,41 @@ import Navber from '../../Share/Navber/Navber';
 // import useAdmin from '../hooks/useAdmin';
 
 
-
-
 const DashBoardLayout = () => {
     const { user } = useContext(AuthContext);
-    
+    // console.log(user);
     const [users,setUsers] = useState([])
-    // console.log(users);
 
     // const [isAdmin] = useAdmin(user?.email)
 
-
-
     useEffect(()=>{
 
-        axios.get(`http://localhost:5000/user/${user?.email}`,{
-            headers:{
-                "authorizaion": `Bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
+        axios.get(`http://localhost:5000/usersCreate`)
         .then(res => {
-            // console.log(res?.data);
-            setUsers(res?.data?.data)
-            // const accessToken = res?.data?.data;
+            console.log(res?.data);
+            setUsers(res?.data)
             // setToken(accessToken)
-            // localStorage.setItem('accessToken', accessToken)
         })
+
 
     },[user?.email])
 
 
+	// useEffect(()=>{
 
+    //     axios.get(`http://localhost:5000/${user?.email}`)
+    //     .then(res => {
+    //         console.log(res?.data);
+    //         setUsers(res?.data)
+    //         // setToken(accessToken)
+    //     })
+
+
+    // },[user?.email])
+
+
+    const dataUser =  users?.filter(us => us.email === user?.email)
+    console.log(dataUser)
 
     return (
         <div>
@@ -48,21 +52,78 @@ const DashBoardLayout = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 text-base-content">
-                        
-                        {/* <li><Link to="/dashboard/allusers">All users</Link></li> */}
-                                <li><Link to="/dashboard/myorders">MyProduct</Link></li>
-                                <li><Link to="/dashboard/addproducts">AddProduct</Link></li>
-                        {/* {
-                            isAdmin && <>
-                                <li><Link to="/dashboard/allusers">All users</Link></li>
-                                <li><Link to="/dashboard/adddoctor">Add A Doctor</Link></li>
-                                <li><Link to="/dashboard/managedoctors">Manage Doctors</Link></li>
+                    {/* <ul className="menu p-4 w-80 text-base-content">
+
+
+                        {
+                            dataUser[0]?.role === 'seller'  ?
+                            <>
+                            <li><Link to="/dashboard/myorders">MyProduct</Link></li>
+                                
                             </>
-                        } */}
+                            :
+                            <>
+                            <li><Link to="/dashboard/addproducts">AddProduct</Link></li>
+                            </>
+
+                        }
+ 
+                    </ul> */}
+
+<div className="h-full p-3 space-y-2 w-60 dark:bg-gray-900 dark:text-gray-100">
+	<div className="flex items-center p-2 space-x-4">
+		<img src="" alt="h" className="w-12 h-12 rounded-full dark:bg-gray-500" />
+		<div>
+			<h2 className="text-lg font-semibold">Leroy Jenkins</h2>
+			<span className="flex items-center space-x-1">
+				<Link to='/'  className="text-xs hover:underline dark:text-gray-400">View profile</Link>
+			</span>
+		</div>
+	</div>
+	<div className="divide-y divide-gray-700">
+		<ul className="pt-2 pb-4 space-y-1 text-sm">
+			<li className="dark:bg-gray-800 dark:text-gray-50">
+				<Link to='/' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span>Dashboard</span>
+				</Link>
+			</li>
+			{ dataUser[0]?.role === 'seller'  ?
+                <li>
+				<Link to='/dashboard/myorders' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span><a>MyProduct</a></span>
+				</Link>
+			</li>
+			:
+			<li>
+				<Link to='/dashboard/addproducts' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span><p>AddProduct</p></span>
+				</Link>
+			</li>
+            }
+			<li>
+				<Link to='/' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span>Wishlist</span>
+				</Link>
+			</li>
+		</ul>
+		<ul className="pt-4 pb-2 space-y-1 text-sm">
+			
+			<li>
+				<Link to='/' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span>Logout</span>
+				</Link>
+			</li>
+		</ul>
+	</div>
+</div>
 
 
-                    </ul>
+
 
                 </div>
             </div>

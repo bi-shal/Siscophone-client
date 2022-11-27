@@ -1,26 +1,31 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import img1 from '../../assets/img/gsmarena_001.jpg'
 import img2 from '../../assets/img/Samsung-online mobile shop in bd.jpg'
 import img3 from '../../assets/img/Symphony-Z47-teaser.jpg'
-import Card from './Card';
+import { AuthContext } from '../../context/AuthProvider';
+
+import Category from './Category';
 
 const Home = () => {
-const [cardData,setJsondata] = useState([])
-// console.log(dataa);
+  const {user} = useContext(AuthContext)
+const [category,setCategory] = useState([]);
+// console.log(category)
 
 
-  fetch('data.json')
+useEffect(()=>{
+  fetch('categoryData.json')
   .then(res => res.json())
   .then(data => {
-    setJsondata(data)
+    setCategory(data)
   })
   .catch(error => console.log(error))
 
+},[user])
 
     return (
         <div>
-    
-            <div className="carousel w-full ">
+     <div className="carousel w-full ">
   <div id="slide1" className="carousel-item relative w-full">
     <img src={img1} alt='' className="w-full h-[80vh]" />
     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -46,15 +51,37 @@ const [cardData,setJsondata] = useState([])
             </div>
 
 
-            <div className='grid mt-8 gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-            {
-                cardData.map(card => <Card
-                    key={card.service_id}
-                    card={card}
-                ></Card>)
-            }
-        </div>
+  {/* 50% of */}
+<div className="p-6 py-12 dark:bg-violet-400 dark:text-gray-900 md:p-20">
+	<div className="container mx-auto">
+		<div className="flex flex-col lg:flex-row items-center justify-between">
+			<h2 className="text-center text-6xl tracking-tighter font-bold">Up to
+				<span className="">50% Off </span>
+			</h2>
+			<div className="space-x-2 text-center py-2 lg:py-0">
+				<span>Plus free shipping! Use code:</span>
+				<span className="font-bold text-lg">#9999</span>
+			</div>
+			<Link to='/'  rel="noreferrer noopener" className="px-5 mt-4 lg:mt-0 py-3 rounded-md border block dark:bg-gray-50 dark:text-gray-900 dark:border-gray-400">Shop Now</Link>
+		</div>
+	</div>
+</div>
+  {/* 50% of */}
 
+
+  {/* category */}
+
+
+
+  <div className="flex items-center -mx-4 space-x-10 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap dark:bg-gray-800 dark:text-gray-100 py-20 my-10 ">
+    <h1 className='text-6xl text-violet-400'> Category</h1>
+    {
+  category.map((cat,id) =><Category
+  key={id}
+  cat={cat}
+  ></Category> )
+}
+</div>
 
         </div>
     );

@@ -12,8 +12,8 @@ const Login = () => {
 
 	const [signError,setSignerror] = useState('')
 	// console.log(logIn)
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const [data,setData] = useState('')
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    // const [data,setData] = useState('')
     // console.log(data);
 
 	let navigate = useNavigate();
@@ -24,10 +24,10 @@ const Login = () => {
 
     const onSubmit = data => {
 		setSignerror('');
-		setData(data)
+		// setData(data)
 		logIn(data.email, data.password)
 		.then(res => {
-			const user = res.user;
+			// const user = res.user;
 			// console.log(user);
 			navigate(from, {replace: true});
 		}).catch(error => {
@@ -41,7 +41,7 @@ const Login = () => {
 		// console.log('click')
 		googleSignIn(provider)
 		.then(res => {
-			const user = res.user;
+			// const user = res.user;
 			// console.log(user);
 		}).catch(error => console.log(error));
 	}
