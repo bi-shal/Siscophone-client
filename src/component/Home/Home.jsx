@@ -1,16 +1,28 @@
+import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import img1 from '../../assets/img/gsmarena_001.jpg'
 import img2 from '../../assets/img/Samsung-online mobile shop in bd.jpg'
 import img3 from '../../assets/img/Symphony-Z47-teaser.jpg'
 import { AuthContext } from '../../context/AuthProvider';
+import Card from './Card';
 
 import Category from './Category';
 
 const Home = () => {
   const {user} = useContext(AuthContext)
 const [category,setCategory] = useState([]);
-// console.log(category)
+const [addsCard,setAddsCard] = useState([]);
+// console.log(addsCard)
+
+useEffect(()=>{
+  axios.get(`http://localhost:5000/addCard`)
+  .then(res => {
+      setAddsCard(res?.data)
+      // setToken(accessToken)
+  })
+
+},[user?.email])
 
 
 useEffect(()=>{
@@ -68,11 +80,30 @@ useEffect(()=>{
 </div>
   {/* 50% of */}
 
+ {/* card */}
+ {
+  addsCard.length > 0  &&
+  <div>
+<h1 className='text-5xl text-cyan-500 font-bold text-center my-5'>ADDVERTISE PRODUCT</h1>
+  <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+      
+  
+      {
+          addsCard.map(cards => <Card
+              key={cards._id}
+              cards={cards}
+          ></Card>)
+      }
+    </div>
+  </div>
+
+
+ }
+ {/* card */}
+ 
+
 
   {/* category */}
-
-
-
   <div className="flex items-center -mx-4 space-x-10 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap dark:bg-gray-800 dark:text-gray-100 py-20 my-10 ">
     <h1 className='text-6xl text-violet-400'> Category</h1>
     {

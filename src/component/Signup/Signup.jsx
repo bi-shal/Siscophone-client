@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useForm } from "react-hook-form";
@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/AuthProvider';
 // import axios from 'axios';
 
 const Signup = () => {
-const {createUser} = useContext(AuthContext)
+const {createUser,user} = useContext(AuthContext)
 // const [useOne,setUseOne] = useState([])
 // console.log(useOne);
 // const [token] = useToken(user)
@@ -28,31 +28,33 @@ const {createUser} = useContext(AuthContext)
         setData(createUserr)
 
 
-        createUser(data.email, data.password)
-       
+        createUser(data.email, data.password)    
         .then(result => {
-
+            const user = result.user;
+            // toast('User Created Successfully.')
         }).catch(error => console.log(error));
 
-
-        
-    fetch(`http://localhost:5000/usersCreate`, {
-        method:'post',
-        headers:{
-            'content-type' : 'application/json',
-        },
-        body:JSON.stringify(dataa)
-    })
-    .then(res => res.json())
-    .then(data => {
-        // console.log(data)
-        // setUseOne(data)
-    })
-.catch(err => console.error(err));
     };
 
+    useEffect(()=>{
 
+        fetch(`http://localhost:5000/usersCreate`, {
+            method:'post',
+            headers:{
+                'content-type' : 'application/json',
+            },
+            body:JSON.stringify(dataa)
+        })
+        .then(res => res.json())
+        .then(data => {
+            // console.log(data)
+            // setUseOne(data)
+        })
+    .catch(err => console.error(err));
 
+    },[dataa]);
+
+// },[user?.email]);
 
     return (
         <div className='py-10'>

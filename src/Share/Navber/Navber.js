@@ -9,18 +9,15 @@ const Navber = () => {
 //log- out
   const out = () =>{
     logOut()
-    .then(result => {
-      const user = result?.user;
-      console.log(user);
-      document.title = 'Logout'
-    })
-    .catch(error => console.error(error));
+    
   }
 
   const menuItems = <React.Fragment>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/appointment">Appointment</Link></li>
+        <li><Link to="/buynow">BuyNow</Link></li>
         <li><Link to="/blog">Blog</Link></li>
+        
         {user?.uid ?
             <>
                 <li><Link to="/dashboard">Dashboard</Link></li>

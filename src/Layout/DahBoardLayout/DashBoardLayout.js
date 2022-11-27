@@ -10,18 +10,17 @@ const DashBoardLayout = () => {
     const { user } = useContext(AuthContext);
     // console.log(user);
     const [users,setUsers] = useState([])
-
+    console.log(users?.role)
     // const [isAdmin] = useAdmin(user?.email)
 
     useEffect(()=>{
 
-        axios.get(`http://localhost:5000/usersCreate`)
+        axios.get(`http://localhost:5000/usersCreate/${user?.email}`)
         .then(res => {
-            console.log(res?.data);
+            // console.log(res?.data);
             setUsers(res?.data)
             // setToken(accessToken)
         })
-
 
     },[user?.email])
 
@@ -39,8 +38,8 @@ const DashBoardLayout = () => {
     // },[user?.email])
 
 
-    const dataUser =  users?.filter(us => us.email === user?.email)
-    console.log(dataUser)
+    // const dataUser =  users?.filter(us => us.email === user?.email)
+    // console.log(dataUser)
 
     return (
         <div>
@@ -88,27 +87,41 @@ const DashBoardLayout = () => {
 					<span>Dashboard</span>
 				</Link>
 			</li>
-			{ dataUser[0]?.role === 'seller'  ?
-                <li>
-				<Link to='/dashboard/myorders' className="flex items-center p-2 space-x-3 rounded-md">
-					
-					<span><a>MyProduct</a></span>
-				</Link>
-			</li>
-			:
-			<li>
+			{ users?.role === 'seller'  ?
+
+
+<>
+            <li>
 				<Link to='/dashboard/addproducts' className="flex items-center p-2 space-x-3 rounded-md">
 					
 					<span><p>AddProduct</p></span>
 				</Link>
 			</li>
-            }
 			<li>
+				<Link to='/dashboard/myProduct' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span><p>MyProducts</p></span>
+				</Link>
+			</li>
+            </>
+                
+			:
+			<>
+            <li>
+				<Link to='/dashboard/myorders' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span><p>MyOrders</p></span>
+				</Link>
+			</li>
+            <li>
 				<Link to='/' className="flex items-center p-2 space-x-3 rounded-md">
 					
 					<span>Wishlist</span>
 				</Link>
 			</li>
+            </>
+            }
+			
 		</ul>
 		<ul className="pt-4 pb-2 space-y-1 text-sm">
 			

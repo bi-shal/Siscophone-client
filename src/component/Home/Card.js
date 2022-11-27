@@ -1,22 +1,26 @@
 import React from 'react';
 
-const Card = ({ card }) => {
-    const { img,price } = card;
+const Card = ({cards }) => {
+    const {category,productImage, quality,status} = cards;
     return (
    
 <div className="card w-96 bg-base-100 shadow-xl">
   <figure className="px-10 pt-10">
-    <img src={img} alt="Shoes" className="rounded-xl" />
+    <img src={productImage} alt="Shoes" className="rounded-xl" />
   </figure>
   <div className="card-body items-center text-center">
-    <h2 className="card-title">{price}</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div className="card-actions">
+    <h2 className="card-title text-2xl">{category}</h2>
+    <h2 className="card-title">{quality}</h2>
+    <h2 className="card-title text-sm">{status}</h2>
+   
+    {/* <div className="card-actions">
       <button className="btn btn-primary">Buy Now</button>
-    </div>
+    </div> */}
   </div>
 </div>
     );
 };
 
 export default Card;
+
+// {price,category,name,productImage,_id, quality,status}

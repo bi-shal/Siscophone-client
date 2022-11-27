@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import AllCategory from "../../Category/AllCategoryy/AllCategory";
-import Samsung from "../../Category/Samsung/Samsung";
-import Symphony from "../../Category/Symphony/Symphony";
-import Xaiomi from "../../Category/Xaiomi/Xaiomi";
+
+
 import Blog from "../../component/Blog/Blog";
+import BuyNow from "../../component/BuyNow/BuyNow";
 import AddProduct from "../../component/DashBoard/AddProduct/AddProduct";
 import Dashboard from "../../component/DashBoard/Dashboard/Dashboard";
 import Myorder from "../../component/DashBoard/Myorder/Myorder";
+import MyProduct from "../../component/DashBoard/MyProduct/MyProduct";
 import Home from "../../component/Home/Home";
 import Login from "../../component/Login/Login";
 import Signup from "../../component/Signup/Signup";
@@ -36,10 +36,11 @@ export const router = createBrowserRouter([
                 element:<Signup></Signup>
             },
             {
-                path:'/check/:id',
-              element:<AllCategory></AllCategory>,
-              loader: ({params}) => fetch(`categoryData.json/check/${params.id}`)
-            }
+                path:'/buynow',
+                element:<BuyNow></BuyNow>
+                
+            },
+            
         ]
 
     },
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
            {
             path:'/dashboard/addproducts',
             element:<AddProduct></AddProduct>
+           },
+           {
+            path:'/dashboard/myProduct',
+            element:<MyProduct></MyProduct>
            }
 
         ]
