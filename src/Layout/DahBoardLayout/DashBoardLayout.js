@@ -10,7 +10,7 @@ const DashBoardLayout = () => {
     const { user } = useContext(AuthContext);
     // console.log(user);
     const [users,setUsers] = useState([])
-    console.log(users?.role)
+    // console.log(users?.role)
     // const [isAdmin] = useAdmin(user?.email)
 
     useEffect(()=>{
@@ -81,16 +81,10 @@ const DashBoardLayout = () => {
 	</div>
 	<div className="divide-y divide-gray-700">
 		<ul className="pt-2 pb-4 space-y-1 text-sm">
-			<li className="dark:bg-gray-800 dark:text-gray-50">
-				<Link to='/' className="flex items-center p-2 space-x-3 rounded-md">
-					
-					<span>Dashboard</span>
-				</Link>
-			</li>
+
+
 			{ users?.role === 'seller'  ?
-
-
-<>
+        <>
             <li>
 				<Link to='/dashboard/addproducts' className="flex items-center p-2 space-x-3 rounded-md">
 					
@@ -119,7 +113,7 @@ const DashBoardLayout = () => {
 					<span>Wishlist</span>
 				</Link>
 			</li>
-            </>
+        </>
             }
 			
 		</ul>
@@ -134,9 +128,6 @@ const DashBoardLayout = () => {
 		</ul>
 	</div>
 </div>
-
-
-
 
                 </div>
             </div>

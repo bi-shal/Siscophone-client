@@ -3,14 +3,16 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../context/AuthProvider';
-
+import toast, { Toaster } from 'react-hot-toast';
+// import { isDisabled } from '@testing-library/user-event/dist/utils';
 
 
 const MyProduct = () => {
+    const [disable,setDisable] = useState(false)
 
     const { user } = useContext(AuthContext)
 const [product,setProduct] = useState([])
-console.log(product);
+// console.log(product);
 
 useEffect(()=>{
     axios.get(`http://localhost:5000/bookings/${user?.email}`)
@@ -23,9 +25,10 @@ useEffect(()=>{
 },[user?.email])
 
 
-const handleAds = product =>{
-    // console.log('click',product)
-    fetch('http://localhost:5000/advertise', {
+const handleAds = (product) =>{
+    
+    console.log('click',product)
+    fetch('http://localhost:5000/advertises', {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
@@ -36,15 +39,17 @@ const handleAds = product =>{
         .then(res => res.json())
         .then(result => {
             console.log(result);
-            // toast.success(Advertise successfully);
+            toast.success('Advertise successfully');
             // navigate('/dashboard/my-product')
-        })
+        }).catch(error => console.log(error))
+        
     
 }
 
 
-const handleDelete = product =>{
-    console.log(product);
+const handleDelete = (product) =>{
+    
+    // console.log(product);
     fetch(`http://localhost:5000/delete/${product}`,{
         method:"DELETE"
     })
@@ -86,16 +91,18 @@ const handleDelete = product =>{
                                 </td>
                                 <td>{product.name}</td>
                                 <td><button className="btn btn-secondary">Available</button></td>
-                                <td><button onClick={()=>handleAds(product)} className="btn btn-outline btn-secondary">Ads Now</button></td>
+                                <td><button
+                                
+                                 onClick={()=>handleAds(product)} className="btn btn-outline btn-secondary" >Ads Now</button></td>
                                 <td><button
                                 onClick={()=>handleDelete(product._id)}
-                                 className="btn btn-secondary">Delete</button></td>
+                                 className="btn btn-secondary" >Delete</button></td>
                             </tr>)
                          }
                     </tbody>
                 </table>
             </div>
-
+{/* onclick="this.disabled = true;" */}
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
-import { toast } from 'react-hot-toast';
+import  toast, { Toaster }  from 'react-hot-toast';
 
 const BookModal = ({ order, setOrder }) => {
     const {user} = useContext(AuthContext)
@@ -23,24 +23,24 @@ const BookModal = ({ order, setOrder }) => {
             sellerEmail: order.email
         }
 
-        // fetch('http://localhost:5000/orders', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(orders)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         if (data.acknowledged) {
-        //             setOrder(null)
-        //             toast.success('Order confirmed');
-        //         }
-        //         else{
-        //             toast.error(data.message);
-        //         }
-        //     })
+        fetch('http://localhost:5000/bookModal', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(orders)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    setOrder(null)
+                    toast.success('Order confirmed');
+                }
+                else{
+                    toast.error(data.message);
+                }
+            })
 
     }
 
