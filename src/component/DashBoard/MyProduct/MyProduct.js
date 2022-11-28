@@ -1,15 +1,11 @@
 
-// import axios from 'axios';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../context/AuthProvider';
-import toast, { Toaster } from 'react-hot-toast';
-// import { isDisabled } from '@testing-library/user-event/dist/utils';
+import toast from 'react-hot-toast';
 
 
 const MyProduct = () => {
-    const [disable,setDisable] = useState(false)
-
     const { user } = useContext(AuthContext)
 const [product,setProduct] = useState([])
 // console.log(product);
@@ -17,7 +13,7 @@ const [product,setProduct] = useState([])
 useEffect(()=>{
     axios.get(`http://localhost:5000/bookings/${user?.email}`)
     .then(res => {
-        // console.log(res?.data);
+        console.log(res?.data);
         setProduct(res?.data)
         // setToken(accessToken)
     })
@@ -41,11 +37,9 @@ const handleAds = (product) =>{
             console.log(result);
             toast.success('Advertise successfully');
             // navigate('/dashboard/my-product')
-        }).catch(error => console.log(error))
-        
-    
+        }).catch(error => console.log(error))     
+ 
 }
-
 
 const handleDelete = (product) =>{
     
@@ -56,13 +50,11 @@ const handleDelete = (product) =>{
         .then(res => res.json())
         .then(result => {
             console.log('CLICK',result);
-            // toast.success(Advertise successfully);
+            toast.success('Advertise successfully');
             // navigate('/dashboard/my-product')
         })
     
 }
-
-
    
     return (
         <div>
@@ -89,7 +81,7 @@ const handleDelete = (product) =>{
                                         </div>
                                     </div>
                                 </td>
-                                <td>{product.name}</td>
+                                <td>{product.productName}</td>
                                 <td><button className="btn btn-secondary">Available</button></td>
                                 <td><button
                                 
@@ -102,7 +94,6 @@ const handleDelete = (product) =>{
                     </tbody>
                 </table>
             </div>
-{/* onclick="this.disabled = true;" */}
         </div>
     );
 };

@@ -1,35 +1,47 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
+// import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthProvider';
 
-const Category = ({cat}) => {
+import { useQuery } from '@tanstack/react-query';
 
-    const {user} = useContext(AuthContext)
-    // const [categories,setCategories] = useState([]);
-    // console.log(categories)
-    
-    
-    // useEffect(()=>{
-    //   fetch('categoryData.json')
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     setCategories(data)
-    //   })
-    //   .catch(error => console.log(error))
-    
-    // },[user])
+// import Loader from '../../Shared/Loader/Loader';
 
 
+const Category = () => {
+
+    const [loading,setloading] = useState(true)
+    console.log(loading);
+
+    // const { data: catagory = [], } = useQuery({
+    //     queryKey: ['catagory'],
+    //     queryFn: async () => {
+    //         const res = await fetch('http://localhost:5000/api/category/:id');
+    //         const data = await res.json();
+    //         if(data){
+    //             setloading(false)
+    //         }
+    //         return data;
+    //     }
+    // });
+   
+    // if(loading){
+    //     <Loader></Loader>
+    // }
     return (
-        <div>
-            <Link to={`/check/${cat.category}`} rel="noopener noreferrer"  className="flex items-center flex-shrink-0 px-5 py-2 border-b-4 dark:border-gray-700 hover:dark:border-violet-400 dark:text-gray-50 text-xl">{cat.name}</Link>
-	
-{/* {
-    categories.map((cate,id) => {
+        
+        <div className='my-10'>
+           <h1 className='text-4xl font-bold mb-10 text-center'>Catagory</h1>
+           <div className="grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 w-2/4 gap-6 mx-auto">
+           {/* {
 
-    })
-} */}
-
+            catagory.map((cat)=><>
+            <Link to={`catagory/${cat._id}`}><button className="btn btn-wide">{cat.catagory}</button></Link>
+            
+            </>)
+            
+           } */}
+           </div>
+           
         </div>
     );
 };

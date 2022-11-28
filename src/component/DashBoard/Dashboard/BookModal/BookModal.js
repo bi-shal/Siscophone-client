@@ -1,16 +1,3 @@
-// import React from 'react';
-
-// const BookModal = () => {
-//     return (
-//         <div>
-            
-//         </div>
-//     );
-// };
-
-// export default BookModal;
-
-
 
 import { format } from 'date-fns';
 import React, { useContext } from 'react';
@@ -19,7 +6,6 @@ import { AuthContext } from '../../../../context/AuthProvider';
 
 
 const BookModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
-    // treatment is just another name of appointmentOptions with name, slots, _id
     const { name: treatmentName, slots, price } = treatment;
     const date = format(selectedDate, 'PP');
     const { user } = useContext(AuthContext);
@@ -31,7 +17,6 @@ const BookModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
         const name = form.name.value;
         const email = form.email.value;
         const phone = form.phone.value;
-        // [3, 4, 5].map((value, i) => console.log(value))
         const booking = {
             appointmentDate: date,
             treatment: treatmentName,
@@ -41,10 +26,6 @@ const BookModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
             phone,
             price
         }
-
-        // TODO: send data to the server
-        // and once data is saved then close the modal 
-        // and display success toast
         fetch('http://localhost:5000/bookings', {
             method: 'POST',
             headers: {
@@ -64,8 +45,6 @@ const BookModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
                     toast.error(data.message);
                 }
             })
-
-
     }
 
     return (

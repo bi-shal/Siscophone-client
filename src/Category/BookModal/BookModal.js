@@ -1,18 +1,19 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
-import  toast, { Toaster }  from 'react-hot-toast';
+import  toast  from 'react-hot-toast';
 
 const BookModal = ({ order, setOrder }) => {
+    console.log(order);
+    // console.log(order.productImage);
     const {user} = useContext(AuthContext)
     const handleBooking = (event) =>{
         event.preventDefault();
-        console.log(event)
+        // console.log(event)
         const form = event.target;
         const location= form.location.value;
         const name = form.name.value;
         const email = form.email.value;
         const phone = form.phone.value;
-        // [3, 4, 5].map((value, i) => console.log(value))
         const orders = {
             user: name,
             location,
@@ -20,8 +21,11 @@ const BookModal = ({ order, setOrder }) => {
             phone,
             product: order.name,
             price: order.salePrice,
-            sellerEmail: order.email
+            sellerEmail: order.email,
+            productImage:order.productImage
+            
         }
+        // console.log(orders);
 
         fetch('http://localhost:5000/bookModal', {
             method: 'POST',
@@ -39,7 +43,7 @@ const BookModal = ({ order, setOrder }) => {
                 }
                 else{
                     toast.error(data.message);
-                }
+                 }
             })
 
     }
@@ -53,7 +57,7 @@ const BookModal = ({ order, setOrder }) => {
                 <div className="modal-box relative">
                     <label htmlFor="bookModal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="text-lg font-bold">{order.name}</h3>
-                    <h3 className="text-lg font-bold">Price: {order.salePrice}</h3>
+                    <h3 className="text-lg font-bold">Price: {order.price}</h3>
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
                         <input type="text" name='location'  placeholder='Your Location' className="input w-full input-bordered " />
                         <input name="name" type="text" defaultValue={user?.displayName} disabled placeholder="Your Name" className="input w-full input-bordered" />

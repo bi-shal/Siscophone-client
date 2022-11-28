@@ -2,13 +2,10 @@ import React, { useState } from 'react';
 import BookModal from '../../Category/BookModal/BookModal';
 
 const BuyNowcards = ({cards}) => {
-    const {category,useTime,productImage,price,purchase, quality,status,location,name} = cards;
+  console.log(cards)
+    const {useTime,productImage,price,purchase,status,location,name} = cards;
     const [order,setOrder] = useState([])
-
-    // const setOrder = (cards) => {
-    //     console.log('click', cards )
-    // }
-
+    console.log(typeof(order),order)
 
     return (
    
@@ -28,19 +25,19 @@ const BuyNowcards = ({cards}) => {
     
 
     <label
-                        htmlFor="bookModal"
-                        className="btn btn-green text-white"
-                        onClick={() => setOrder(cards)}
-                    >Book Now</label>
+        htmlFor="bookModal"
+        className="btn btn-green text-white"
+        onClick={() => setOrder(cards)}
+        >Book Now
+    </label>
 
-
-{
+        {
             order && <BookModal        
                 order={order}
                 setOrder={setOrder}
                 >
                 </BookModal>
-            }
+        }
 
 
   </div>

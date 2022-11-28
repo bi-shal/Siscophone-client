@@ -6,7 +6,7 @@ import BuyNowcards from './BuyNowcards';
 const BuyNow = () => {
     const {user} = useContext(AuthContext);
     const [shop,setShop] = useState([]);
-    // console.log(shop)
+    console.log(shop.length)
 
     useEffect(()=>{
         axios.get(`http://localhost:5000/shop`)
@@ -20,10 +20,9 @@ const BuyNow = () => {
 
     return (
         <div className='my-20'>
-            {
-  shop.length > 0  &&
+            
   <div>
-<h1 className='text-5xl text-cyan-500 font-bold text-center my-5'>BOOK NOW !!!</h1>
+<h1 className='text-5xl text-cyan-500 font-bold text-center my-5'>BUY NOW !!!</h1>
   <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
       
   
@@ -37,7 +36,7 @@ const BuyNow = () => {
   </div>
 
 
- }
+ 
         </div>
     );
 };

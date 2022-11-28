@@ -136,7 +136,7 @@ const AddProduct = () => {
                     </div>
                     <div>
                         <label className="text-gray-800" >
-                            Product Price
+                            Sells Price
                         </label>
                         <input
                             id="price"
