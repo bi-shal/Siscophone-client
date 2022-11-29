@@ -1,15 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../context/AuthProvider';
 import toast from 'react-hot-toast';
-// import useToken from '../../Share/Token/token';
-// import axios from 'axios';
 import { GoogleAuthProvider } from "firebase/auth";
+import Token from '../../Hooks/Token/Token';
+
+
+
 const Signup = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUser,googleSignIn } = useContext(AuthContext)
+    
+    const [signUser,setSignUser] = useState();
+    const [token] = Token(signUser)
+
     const onSubmit = (data) => {
         // setSignUPError('');
         createUser(data.email, data.password)
@@ -31,7 +37,6 @@ const Signup = () => {
                 toast.error(error.message)
                 // setSignUPError(error.message)
             });
-
     }
 
 
@@ -61,6 +66,8 @@ const Signup = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
+                setSignUser(email)
             })
     }
 

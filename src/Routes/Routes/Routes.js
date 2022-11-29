@@ -5,6 +5,7 @@ import AddProduct from "../../component/DashBoard/AddProduct/AddProduct";
 import Myorder from "../../component/DashBoard/Myorder/Myorder";
 import MyProduct from "../../component/DashBoard/MyProduct/MyProduct";
 import Category from "../../component/Home/Category";
+import Categorycards from "../../component/Home/Categorycards";
 import Home from "../../component/Home/Home";
 import Login from "../../component/Login/Login";
 import Signup from "../../component/Signup/Signup";
@@ -45,8 +46,9 @@ export const router = createBrowserRouter([
                 element:<PayNow></PayNow>
                },
             {
-                path:'/category/:id',
-                element:<Category></Category>
+                path:'/categoryForm/:category',
+                element:<Category></Category>,
+                loader:({params}) => fetch(`http://localhost:5000/categoryForm/${params.category}`)
             }
             
         ]
@@ -61,6 +63,10 @@ export const router = createBrowserRouter([
         path:'/dashboard',
         element:<PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
         children:[
+            {
+                path:'/dashboard',
+                element:<AddProduct></AddProduct>
+            },
            { 
             path:'/dashboard/myorders',
             element:<Myorder></Myorder>

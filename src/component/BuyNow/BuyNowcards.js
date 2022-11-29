@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import BookModal from '../../Category/BookModal/BookModal';
 
 const BuyNowcards = ({cards}) => {
-  console.log(cards)
+  // console.log(cards)
     const {useTime,productImage,price,purchase,status,location,name} = cards;
     const [order,setOrder] = useState([])
-    console.log(typeof(order),order)
+    // console.count(typeof(order),order)
 
     return (
    

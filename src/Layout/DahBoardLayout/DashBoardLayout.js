@@ -10,7 +10,7 @@ const DashBoardLayout = () => {
     const { user } = useContext(AuthContext);
     // console.log(user);
     const [users,setUsers] = useState([])
-    // console.log(users?.role)
+    console.log(users)
     // const [isAdmin] = useAdmin(user?.email)
 
     useEffect(()=>{
@@ -95,19 +95,6 @@ const admin = (
 </>
 )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     return (
         <div>
             <Navber></Navber>
@@ -141,18 +128,13 @@ const admin = (
 	<div className="divide-y divide-gray-700">
 		<ul className="pt-2 pb-4 space-y-1 text-sm">
 
-
-			
-
           <>
-          {users.role == 'seller' && seller}
-            {users.role == 'buyer' && buyer}
-            {users.role == 'admin' && admin}
+          {users.role === 'seller' && seller}
+            {users.role === 'buyer' && buyer}
+            {users.role === 'admin' && admin}
                 
           </>
-            
-            
-			
+            	
 		</ul>
 		<ul className="pt-4 pb-2 space-y-1 text-sm">
 			
@@ -167,54 +149,4 @@ const admin = (
 };
 
 export default DashBoardLayout;
-
-
-
-
-
-
-// { users?.role === 'seller'  ?
-// <>
-//     <li>
-//         <Link to='/dashboard/addproducts' className="flex items-center p-2 space-x-3 rounded-md">
-            
-//             <span><p>AddProduct</p></span>
-//         </Link>
-//     </li>
-//     <li>
-//         <Link to='/dashboard/myProduct' className="flex items-center p-2 space-x-3 rounded-md">
-            
-//             <span><p>MyProducts</p></span>
-//         </Link>
-//     </li>
-
-//     {/* <li>
-//         <Link to='/dashboard/myorders' className="flex items-center p-2 space-x-3 rounded-md">
-            
-//             <span><p>MyOrders</p></span>
-//         </Link>
-//     </li> */}
-//     </>
-        
-//     :
-//     <>
-//     <li>
-//         <Link to='/dashboard/myorders' className="flex items-center p-2 space-x-3 rounded-md">
-            
-//             <span><p>MyOrders</p></span>
-//         </Link>
-//     </li>
-//     <li>
-//         <Link to='/' className="flex items-center p-2 space-x-3 rounded-md">
-            
-//             <span>Wishlist</span>
-//         </Link>
-//     </li>
-// </>
-//     } 
-
-
-
-
-
 

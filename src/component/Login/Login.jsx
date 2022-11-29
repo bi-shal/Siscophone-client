@@ -3,17 +3,18 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 //form-hook
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../context/AuthProvider';
+import Token from '../../Hooks/Token/Token';
 
 
 const Login = () => {
 	const {logIn} = useContext(AuthContext)
-	// const provider = new GoogleAuthProvider();
 
 	const [signError,setSignerror] = useState('')
 	// console.log(logIn)
     const { register, handleSubmit, formState: { errors } } = useForm();
-    // const [data,setData] = useState('')
+    const [LoginUser,setLoginuser] = useState('')
     // console.log(data);
+	const [token] = Token(LoginUser)
 
 	let navigate = useNavigate();
 	let location = useLocation();
@@ -28,6 +29,7 @@ const Login = () => {
 		.then(res => {
 			// const user = res.user;
 			// console.log(user);
+			setLoginuser(data.email)
 			navigate(from, {replace: true});
 		}).catch(error => {
 			// console.log(error)

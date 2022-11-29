@@ -6,7 +6,7 @@ import BuyNowcards from './BuyNowcards';
 const BuyNow = () => {
     const {user} = useContext(AuthContext);
     const [shop,setShop] = useState([]);
-    console.log(shop.length)
+    console.log(shop)
 
     useEffect(()=>{
         axios.get(`http://localhost:5000/shop`)
@@ -16,7 +16,7 @@ const BuyNow = () => {
             // setToken(accessToken)
         })
       
-      },[user?.email])
+      },[])
 
     return (
         <div className='my-20'>

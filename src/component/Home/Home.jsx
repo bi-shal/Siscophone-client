@@ -6,11 +6,13 @@ import img2 from '../../assets/img/Samsung-online mobile shop in bd.jpg'
 import img3 from '../../assets/img/Symphony-Z47-teaser.jpg'
 import { AuthContext } from '../../context/AuthProvider';
 import Card from './Card';
+import CategoryHome from './CategoryHome';
 
 
 const Home = () => {
   const {user} = useContext(AuthContext)
 const [category,setCategory] = useState([]);
+// console.log(category)
 const [addsCard,setAddsCard] = useState([]);
 // console.log(typeof(addsCard))
 
@@ -25,7 +27,7 @@ useEffect(()=>{
 
 
 useEffect(()=>{
-  fetch('categoryData.json')
+  fetch('http://localhost:5000/category')
   .then(res => res.json())
   .then(data => {
     setCategory(data)
@@ -102,20 +104,21 @@ useEffect(()=>{
 </div>
 
  }
- {/* card */}
+
  
 
 
-  {/* category */}
-  {/* <div className="flex items-center -mx-4 space-x-10 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap dark:bg-gray-800 dark:text-gray-100 py-20 my-10 ">
-    <h1 className='text-6xl text-violet-400'> Category</h1>
+<div className='my-16'>
+<div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+    
     {
-  category.map((cat,id) =><Category
+  category.map((cat,id) =><CategoryHome
   key={id}
-  cat={cat.name}
-  ></Category> )
+  cat={cat}
+  ></CategoryHome> )
 }
-</div> */}
+</div>
+</div>
 
 
 

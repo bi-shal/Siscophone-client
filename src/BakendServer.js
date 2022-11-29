@@ -865,3 +865,20 @@ const Catagory = () => {
 
 export default Catagory;
 //category
+
+
+
+app.get("/api/category/:id", async (req, res) => {
+    const id = req.params.id;
+    //console.log(id);
+  
+    const category = await categoryCollection.findOne({
+      _id: ObjectId(id),
+    });
+    //console.log(category.category);
+  
+    const allProduct = await productCollection
+      .find({ category: category.category })
+      .toArray();
+    //console.log(allProduct);
+    res.status(200).send({ product: allProduct });

@@ -3,7 +3,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import  toast  from 'react-hot-toast';
 
 const BookModal = ({ order, setOrder }) => {
-    console.log(order);
+    // console.log(order);
     // console.log(order.productImage);
     const {user} = useContext(AuthContext)
     const handleBooking = (event) =>{
