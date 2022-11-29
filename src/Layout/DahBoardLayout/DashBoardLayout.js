@@ -24,6 +24,90 @@ const DashBoardLayout = () => {
 
     },[user?.email])
 
+
+
+
+
+const seller = (
+    <>
+    <li>
+				<Link to='/dashboard/addproducts' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span><p>AddProduct</p></span>
+				</Link>
+			</li>
+			<li>
+				<Link to='/dashboard/myProduct' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span><p>MyProducts</p></span>
+				</Link>
+			</li>
+     </>
+)
+
+const buyer = (
+    <>
+    <>
+            <li>
+				<Link to='/dashboard/myorders' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span><p>MyOrders</p></span>
+				</Link>
+			</li>
+            <li>
+				<Link to='/' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span>Wishlist</span>
+				</Link>
+			</li>
+        </>
+    
+    </>
+)
+
+
+const admin = (
+<>
+            <li>
+				<Link to='/dashboard/addproducts' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span><p>AddProduct</p></span>
+				</Link>
+			</li>
+			<li>
+				<Link to='/dashboard/myProduct' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span><p>MyProducts</p></span>
+				</Link>
+			</li>
+            <li>
+				<Link to='/dashboard/myorders' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span><p>MyOrders</p></span>
+				</Link>
+			</li>
+            <li>
+				<Link to='/' className="flex items-center p-2 space-x-3 rounded-md">
+					
+					<span>Wishlist</span>
+				</Link>
+			</li>
+</>
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <div>
             <Navber></Navber>
@@ -58,45 +142,16 @@ const DashBoardLayout = () => {
 		<ul className="pt-2 pb-4 space-y-1 text-sm">
 
 
-			{ users?.role === 'seller'  ?
-        <>
-            <li>
-				<Link to='/dashboard/addproducts' className="flex items-center p-2 space-x-3 rounded-md">
-					
-					<span><p>AddProduct</p></span>
-				</Link>
-			</li>
-			<li>
-				<Link to='/dashboard/myProduct' className="flex items-center p-2 space-x-3 rounded-md">
-					
-					<span><p>MyProducts</p></span>
-				</Link>
-			</li>
+			
 
-            {/* <li>
-				<Link to='/dashboard/myorders' className="flex items-center p-2 space-x-3 rounded-md">
-					
-					<span><p>MyOrders</p></span>
-				</Link>
-			</li> */}
-            </>
+          <>
+          {users.role == 'seller' && seller}
+            {users.role == 'buyer' && buyer}
+            {users.role == 'admin' && admin}
                 
-			:
-			<>
-            <li>
-				<Link to='/dashboard/myorders' className="flex items-center p-2 space-x-3 rounded-md">
-					
-					<span><p>MyOrders</p></span>
-				</Link>
-			</li>
-            <li>
-				<Link to='/' className="flex items-center p-2 space-x-3 rounded-md">
-					
-					<span>Wishlist</span>
-				</Link>
-			</li>
-        </>
-            }
+          </>
+            
+            
 			
 		</ul>
 		<ul className="pt-4 pb-2 space-y-1 text-sm">
@@ -112,3 +167,54 @@ const DashBoardLayout = () => {
 };
 
 export default DashBoardLayout;
+
+
+
+
+
+
+// { users?.role === 'seller'  ?
+// <>
+//     <li>
+//         <Link to='/dashboard/addproducts' className="flex items-center p-2 space-x-3 rounded-md">
+            
+//             <span><p>AddProduct</p></span>
+//         </Link>
+//     </li>
+//     <li>
+//         <Link to='/dashboard/myProduct' className="flex items-center p-2 space-x-3 rounded-md">
+            
+//             <span><p>MyProducts</p></span>
+//         </Link>
+//     </li>
+
+//     {/* <li>
+//         <Link to='/dashboard/myorders' className="flex items-center p-2 space-x-3 rounded-md">
+            
+//             <span><p>MyOrders</p></span>
+//         </Link>
+//     </li> */}
+//     </>
+        
+//     :
+//     <>
+//     <li>
+//         <Link to='/dashboard/myorders' className="flex items-center p-2 space-x-3 rounded-md">
+            
+//             <span><p>MyOrders</p></span>
+//         </Link>
+//     </li>
+//     <li>
+//         <Link to='/' className="flex items-center p-2 space-x-3 rounded-md">
+            
+//             <span>Wishlist</span>
+//         </Link>
+//     </li>
+// </>
+//     } 
+
+
+
+
+
+

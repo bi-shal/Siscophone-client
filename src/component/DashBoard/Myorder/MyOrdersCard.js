@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MyOrdersCard = ({myCards}) => {
     const {category,useTime,productImage,price,purchase,status,location,name} = myCards;
@@ -16,6 +17,14 @@ const MyOrdersCard = ({myCards}) => {
                 <p className='font-bold text-red-500'>Sale Price:  {price}</p>
                 <p> Use:  {useTime}</p>
                 <p>Location:  {location}</p>
+                <td>
+                  <Link to={`/pay`}>
+                  <button 
+
+                      className="btn btn-accent">PayNow
+                      </button>
+                  </Link>
+                </td>
         </div>
       </div>
 
@@ -23,3 +32,5 @@ const MyOrdersCard = ({myCards}) => {
 };
 
 export default MyOrdersCard;
+
+

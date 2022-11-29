@@ -14,7 +14,7 @@ const Navber = () => {
 
   const menuItems = <React.Fragment>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/appointment">Appointment</Link></li>
+        {/* <li><Link to="/appointment">Appointment</Link></li> */}
         <li><Link to="/buynow">BuyNow</Link></li>
         <li><Link to="/blog">Blog</Link></li>
         
