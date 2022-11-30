@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/buynow',
-                element:<BuyNow></BuyNow>
+                element:<PrivateRoute><BuyNow></BuyNow></PrivateRoute>
                 
             },
             { 
@@ -65,7 +65,7 @@ export const router = createBrowserRouter([
         children:[
             {
                 path:'/dashboard',
-                element:<AddProduct></AddProduct>
+                element:<BuyNow></BuyNow>
             },
            { 
             path:'/dashboard/myorders',

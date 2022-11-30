@@ -12,10 +12,7 @@ const Card = ({cards }) => {
     <h2 className="card-title text-2xl">{category}</h2>
     <h2 className="card-title">{quality}</h2>
     <h2 className="card-title text-sm">{status}</h2>
-   
-    {/* <div className="card-actions">
-      <button className="btn btn-primary">Buy Now</button>
-    </div> */}
+
   </div>
 </div>
     );

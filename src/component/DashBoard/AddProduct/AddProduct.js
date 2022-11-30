@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+
 import { AuthContext } from '../../../context/AuthProvider';
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     let time = new Date();
     let hour = time.getHours();
@@ -34,7 +36,7 @@ const AddProduct = () => {
 
         // console.log(price,useTime,purchaseYear,location,phone);
 
-        // toast.success('Wait for Submit');
+        toast.success('Wait for Submit');
 
         const image = e.target.productPhoto.files[0];
         // console.log(image);
@@ -82,7 +84,7 @@ const AddProduct = () => {
                     .then((data) => {
                         // console.log(data);
                         // toast.success('Product Submited successfully');
-                        // navigate('/dashboard/my-product');
+                        navigate('/dashboard/myProduct');
                     });
             });
     };

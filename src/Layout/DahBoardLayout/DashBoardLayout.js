@@ -3,15 +3,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import Navber from '../../Share/Navber/Navber';
-// import useAdmin from '../hooks/useAdmin';
 
 
 const DashBoardLayout = () => {
     const { user } = useContext(AuthContext);
     // console.log(user);
     const [users,setUsers] = useState([])
-    console.log(users)
-    // const [isAdmin] = useAdmin(user?.email)
 
     useEffect(()=>{
 
@@ -19,7 +16,7 @@ const DashBoardLayout = () => {
         .then(res => {
             // console.log(res?.data);
             setUsers(res?.data)
-            // setToken(accessToken)
+            
         })
 
     },[user?.email])

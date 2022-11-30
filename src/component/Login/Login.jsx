@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 //form-hook
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../context/AuthProvider';
-import Token from '../../Hooks/Token/Token';
 
 
 const Login = () => {
@@ -12,10 +11,7 @@ const Login = () => {
 	const [signError,setSignerror] = useState('')
 	// console.log(logIn)
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [LoginUser,setLoginuser] = useState('')
-    // console.log(data);
-	const [token] = Token(LoginUser)
-
+   
 	let navigate = useNavigate();
 	let location = useLocation();
 	
@@ -29,7 +25,7 @@ const Login = () => {
 		.then(res => {
 			// const user = res.user;
 			// console.log(user);
-			setLoginuser(data.email)
+
 			navigate(from, {replace: true});
 		}).catch(error => {
 			// console.log(error)
@@ -95,7 +91,7 @@ const Login = () => {
 		</button>
 	</div> */}
 	<p className="text-xl text-center sm:px-6 dark:text-gray-400">Don't have an account?
-		<Link to='/signup' className="underline dark:text-gray-100">Log In</Link>
+		<Link to='/signup' className="underline dark:text-gray-100">Sign Up</Link>
 	</p>
 </div>
         </div>

@@ -12,7 +12,6 @@ const Myorder = () => {
 
         axios.get(`http://localhost:5000/bookModal`)
         .then(res => {
-            // console.log(res?.data);
             setOrders(res?.data)
             // setToken(accessToken)
         })

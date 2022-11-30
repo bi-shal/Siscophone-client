@@ -1,25 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthProvider';
+
 
 const CategoryHome = ({cat}) => {
-    const {user} = useContext(AuthContext)
-    // console.log(cat.name);
-    const {name,img} = cat;
-    // const [cate,setcate] =useState([])
-    console.log(cat)
-
-    // useEffect(()=>{
-    //     fetch('http://localhost:5000/categoryform')
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         setcate(data)
-    //     })
-    //     .catch(error => console.log(error))
-      
-    //   },[user])
-
-
+   
+    const {name} = cat;
+ 
     return (
         <div>
             <div className="card w-100 bg-base-100 shadow-xl image-full">

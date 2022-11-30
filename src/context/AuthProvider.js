@@ -55,7 +55,8 @@ const updateUser = (profile) => {
         logOut,
         googleSignIn,
         loading,
-        updateUser
+        updateUser,
+       
 
     }
     return (

@@ -100,7 +100,7 @@ useEffect(()=>{
 :
 
 <div>
-<h1 className='text-5xl text-cyan-500 font-bold text-center my-5'>ADDVERTISE PRODUCT</h1>
+<h1 className='text-5xl text-cyan-500 font-bold text-center my-5'>Not Available</h1>
 </div>
 
  }
