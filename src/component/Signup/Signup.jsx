@@ -58,7 +58,7 @@ const Signup = () => {
     }
     const saveUser = (role,name, email) => {
         const user = {role, name, email };
-        fetch('http://localhost:5000/usersCreate', {
+        fetch('https://assignment-12-server-mocha.vercel.app/usersCreate', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

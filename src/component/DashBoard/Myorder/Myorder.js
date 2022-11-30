@@ -10,7 +10,7 @@ const Myorder = () => {
 
     useEffect(()=>{
 
-        axios.get(`http://localhost:5000/bookModal`)
+        axios.get(`https://assignment-12-server-mocha.vercel.app/bookModal`)
         .then(res => {
             setOrders(res?.data)
             // setToken(accessToken)

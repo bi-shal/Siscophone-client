@@ -17,7 +17,7 @@ const [addsCard,setAddsCard] = useState([]);
 // console.log(typeof(addsCard))
 
 useEffect(()=>{
-  axios.get(`http://localhost:5000/addCard`)
+  axios.get(`https://assignment-12-server-mocha.vercel.app/addCard`)
   .then(res => {
       setAddsCard(res?.data)
       // setToken(accessToken)
@@ -27,7 +27,7 @@ useEffect(()=>{
 
 
 useEffect(()=>{
-  fetch('http://localhost:5000/category')
+  fetch('https://assignment-12-server-mocha.vercel.app/category')
   .then(res => res.json())
   .then(data => {
     setCategory(data)

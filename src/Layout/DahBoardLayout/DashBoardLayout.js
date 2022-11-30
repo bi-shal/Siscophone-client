@@ -13,7 +13,7 @@ const DashBoardLayout = () => {
 
     useEffect(()=>{
 
-        axios.get(`http://localhost:5000/userrole/${user?.email}`)
+        axios.get(`https://assignment-12-server-mocha.vercel.app/userrole/${user?.email}`)
         .then(res => {
             console.log(res?.data);
             setUsers(res?.data)

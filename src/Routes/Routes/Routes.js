@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
             {
                 path:'/categoryForm/:category',
                 element:<Category></Category>,
-                loader:({params}) => fetch(`http://localhost:5000/categoryForm/${params.category}`)
+                loader:({params}) => fetch(`https://assignment-12-server-mocha.vercel.app/categoryForm/${params.category}`)
             }
             
         ]

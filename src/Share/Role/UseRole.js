@@ -9,7 +9,7 @@ const UseRole = () => {
 console.log('role',isRole);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user?.email}`)
+        fetch(`https://assignment-12-server-mocha.vercel.app/users/${user?.email}`)
         .then(res => res>json())
         .then(data => {
             console.log(data.role)

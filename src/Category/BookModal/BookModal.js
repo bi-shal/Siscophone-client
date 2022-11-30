@@ -27,7 +27,7 @@ const BookModal = ({ order, setOrder }) => {
         }
         // console.log(orders);
 
-        fetch('http://localhost:5000/bookModal', {
+        fetch('https://assignment-12-server-mocha.vercel.app/bookModal', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

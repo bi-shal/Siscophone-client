@@ -22,7 +22,7 @@ const useToken =(user) => {
         if (email && uid){
           
             
-            axios.put(`http://localhost:5000/user/${email}`, currentUser)
+            axios.put(`https://assignment-12-server-mocha.vercel.app/user/${email}`, currentUser)
             .then(res => {
                 // console.log(res?.data?.data);
                 const accessToken = res?.data?.data;

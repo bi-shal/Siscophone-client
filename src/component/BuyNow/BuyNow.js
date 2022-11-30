@@ -9,7 +9,7 @@ const BuyNow = () => {
     // console.log(shop)
 
     useEffect(()=>{
-        axios.get(`http://localhost:5000/shop`)
+        axios.get(`https://assignment-12-server-mocha.vercel.app/shop`)
         .then(res => {
             setShop(res?.data)
             // console.log(res);

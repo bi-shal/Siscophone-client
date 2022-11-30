@@ -13,7 +13,7 @@ const [product,setProduct] = useState([])
 const [dele,setDelet] = useState('')
 
 useEffect(()=>{
-    axios.get(`http://localhost:5000/bookings/${user?.email}`)
+    axios.get(`https://assignment-12-server-mocha.vercel.app/bookings/${user?.email}`)
     .then(res => {
         console.log(res?.data);
         setProduct(res?.data)
@@ -26,7 +26,7 @@ useEffect(()=>{
 const handleAds = (product) =>{
     
     console.log('click',product)
-    fetch('http://localhost:5000/advertises', {
+    fetch('https://assignment-12-server-mocha.vercel.app/advertises', {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
@@ -46,7 +46,7 @@ const handleAds = (product) =>{
 const handleDelete = (product) =>{
     
     // console.log(product);
-    fetch(`http://localhost:5000/delete/${product}`,{
+    fetch(`https://assignment-12-server-mocha.vercel.app/delete/${product}`,{
         method:"DELETE"
     })
         .then(res => res.json())
