@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from '../../context/AuthProvider';
 import toast from 'react-hot-toast';
 import { GoogleAuthProvider } from "firebase/auth";
-import Token from '../../Hooks/Token/Token';
+
 
 
 
@@ -14,8 +14,7 @@ const Signup = () => {
     const { createUser, updateUser,googleSignIn } = useContext(AuthContext)
    const navigate =  useNavigate()
     const [signUser,setSignUser] = useState();
-    const [token] = Token(signUser)
-    console.log(token);
+
 
     const onSubmit = (data) => {
         // setSignUPError('');

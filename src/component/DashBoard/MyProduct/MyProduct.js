@@ -10,6 +10,8 @@ const MyProduct = () => {
 const [product,setProduct] = useState([])
 // console.log(product);
 
+const [dele,setDelet] = useState('')
+
 useEffect(()=>{
     axios.get(`http://localhost:5000/bookings/${user?.email}`)
     .then(res => {
@@ -18,7 +20,7 @@ useEffect(()=>{
         // setToken(accessToken)
     })
 
-},[user?.email])
+},[user?.email,dele])
 
 
 const handleAds = (product) =>{
@@ -50,6 +52,7 @@ const handleDelete = (product) =>{
         .then(res => res.json())
         .then(result => {
             console.log('CLICK',result);
+            setDelet(result)
             toast.success('Advertise successfully');
             // navigate('/dashboard/my-product')
         })
