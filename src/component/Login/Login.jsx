@@ -91,7 +91,7 @@ const Login = () => {
 		</button>
 	</div> */}
 	<p className="text-xl text-center sm:px-6 dark:text-gray-400">Don't have an account?
-		<Link to='/signup' className="underline dark:text-gray-100">Log In</Link>
+		<Link to='/signup' className="underline dark:text-gray-100">Sign Up</Link>
 	</p>
 </div>
         </div>

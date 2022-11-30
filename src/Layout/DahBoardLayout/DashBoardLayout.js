@@ -9,12 +9,13 @@ const DashBoardLayout = () => {
     const { user } = useContext(AuthContext);
     // console.log(user);
     const [users,setUsers] = useState([])
+    // console.log(users);
 
     useEffect(()=>{
 
         axios.get(`http://localhost:5000/userrole/${user?.email}`)
         .then(res => {
-            // console.log(res?.data);
+            console.log(res?.data);
             setUsers(res?.data)
             
         })

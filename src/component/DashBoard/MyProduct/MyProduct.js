@@ -62,7 +62,10 @@ const handleDelete = (product) =>{
     return (
         <div>
            <div className="overflow-x-auto">
-                 <table className="table w-full">
+                {
+                    product.length > 0 ?
+                    <>
+                     <table className="table w-full">
                    <thead>
                          <tr>
                              <th></th>
@@ -93,9 +96,17 @@ const handleDelete = (product) =>{
                                 onClick={()=>handleDelete(product._id)}
                                  className="btn btn-secondary" >Delete</button></td>
                             </tr>)
+                                              
                          }
                     </tbody>
                 </table>
+                    </>
+                    :
+                    <>
+                    <h1 className='text-4xl text-center text-violet-700 font-bold'>NO PRODUCT AVAILABLE !!!</h1>
+                    <h1 className='text-4xl text-center text-amber-500 font-bold'>PLEASE ADD PRODUCT</h1>
+                    </>
+                }
             </div>
         </div>
     );
